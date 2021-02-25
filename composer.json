@@ -1,6 +1,6 @@
 {
     "name": "francescogregori/friendly_url_only",
-    "type": "library",
+    "type": "drupal-module",
     "description": "Visualizza pagina 404 per gli url del tipo node/x",
     "keywords": ["404","path","throw"],
     "homepage": "https://francescogregori.it",
