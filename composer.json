@@ -1,7 +1,7 @@
 {
     "name": "francescogregori/friendly_url_only",
     "type": "drupal-module",
-    "description": "Visualizza pagina 404 per gli url del tipo node/x",
+    "description": "Displays page 404 for all nodes that do not have a path set with pathauto. Example: 'node / 1' return 404 page",
     "keywords": ["404","path","throw"],
     "homepage": "https://francescogregori.it",
     "license": "MIT",
