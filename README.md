@@ -1,6 +1,3 @@
-# friendly_url_only
-Displays page 404 for all nodes that do not have a path set with pathauto.
-Example: "node / 1" return 404 page
 # Friendly url only
 
 Friendly url only is a module that allows you to deny access to all nodes that do not have an alias path set.
