@@ -1,6 +1,6 @@
 # Friendly url only
 
-Friendly url only is a module that allows you to deny access to all nodes that do not have an alias path set.
+[Friendly url only](https://packagist.org/packages/francescogregori/friendly_url_only) is a module that allows you to deny access to all nodes that do not have an alias path set.
 
 ## Installation
 
