@@ -1,0 +1,7 @@
+name: Friendly url only
+type: module
+description: "Hide url like node/xx "
+package: DSIGN
+core_version_requirement: ^8.8.0 || ^9.0
+dependencies:
+- drupal:pathauto

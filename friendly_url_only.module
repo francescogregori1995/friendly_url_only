@@ -1,0 +1,34 @@
+<?php
+// use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
+//
+// function friendly_url_only_preprocess_page(&$variables) {
+//   $current_path = \Drupal::request()->getRequestUri();
+//   $status_code = '';
+//   $exception = \Drupal::requestStack()->getCurrentRequest()->attributes->get('exception');
+//   if ($exception instanceof HttpExceptionInterface) {
+//     $status_code = $exception->getStatusCode();
+//   }
+//   if (strpos($current_path, '/node/') === 0) {
+//     $current_path = substr($current_path, 6);
+//     if ($status_code != '404' && is_numeric($current_path)) {
+//       throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
+//     }
+//   }
+//
+// }
+use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
+
+function friendly_url_only_preprocess_page(&$variables) {
+  $current_path = \Drupal::request()->getRequestUri();
+
+  if (strpos($current_path, '/node/') === 0) {
+    $status_code = '';
+    $exception = \Drupal::requestStack()->getCurrentRequest()->attributes->get('exception');
+    if ($exception instanceof HttpExceptionInterface) {
+      $status_code = $exception->getStatusCode();
+    }
+    if ($status_code != '404' && is_numeric(substr($current_path, 6))) {
+      throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
+    }
+  }
+}

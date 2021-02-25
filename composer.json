@@ -1,0 +1,15 @@
+{
+    "name": "francescogregori/friendly_url_only",
+    "type": "library",
+    "description": "Visualizza pagina 404 per gli url del tipo node/x",
+    "keywords": ["404","path","throw"],
+    "homepage": "https://francescogregori.it",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Francesco Gregori",
+            "email": "info@francescogregori.it",
+            "homepage": "https://francescogregori.it",
+            "role": "Developer"
+        }
+    ],
