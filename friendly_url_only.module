@@ -1,17 +1,42 @@
 <?php
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
 
 function friendly_url_only_preprocess_page(&$variables) {
+  global $base_url;
   $current_path = \Drupal::request()->getRequestUri();
-
+  //check if url starts with node/xx
   if (strpos($current_path, '/node/') === 0) {
+    //are we in a 404 response?
     $status_code = '';
     $exception = \Drupal::requestStack()->getCurrentRequest()->attributes->get('exception');
     if ($exception instanceof HttpExceptionInterface) {
       $status_code = $exception->getStatusCode();
     }
+    //continue only if we are not in a 404 response and the url is node/xxx(numeric and with no suffix)
     if ($status_code != '404' && is_numeric(substr($current_path, 6))) {
-      throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
+      // if is front page redirect to <front>
+      $is_front_page = \Drupal::service('path.matcher')->isFrontPage();
+      if ($is_front_page) {
+        $host = \Drupal::request()->getHost();
+        $response = new RedirectResponse($base_url);
+        $response->send();
+      } else {
+        //does node have a friendly url? (path alias)
+        $nid = intval(substr($current_path, 6));
+        $langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
+        $url_alias = \Drupal::service('path_alias.manager')->getAliasByPath('/node/'. $nid, $langcode);
+        if ($url_alias == $current_path) {
+          // redirect to 404 page
+          throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
+        } else {
+          // redirect to friendly url(path alias)
+          $response = new RedirectResponse($url_alias);
+          $response->send();
+        }
+      }
+
     }
   }
 }
