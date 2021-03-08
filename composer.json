@@ -12,6 +12,12 @@
             "homepage": "https://francescogregori.it",
             "role": "Developer"
         }
+        {
+            "name": "Filiberto Strazzari",
+            "email": "filiberto@dsign.it",
+            "homepage": "https://dsign.it",
+            "role": "Developer"
+        }
     ],
     "require": {
         "drupal/pathauto": "^1.8"
